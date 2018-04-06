@@ -10,23 +10,27 @@
 
 
 namespace rov_types {
-    struct rov_telimetry : public base_packet_t<0x1E, 13, 15> {
+    struct rov_telimetry : public base_packet_t<0x1E, 17, 19> {
 
         float yaw = 0;
         float pitch = 0;
         float roll = 0;
+        float depth = 0;
     private:
         void data_serialize(binary_stream &bs) override final;
 
         void data_deserialize(binary_stream &bs) override final;
     };
 
-    struct rov_control : public base_packet_t<0x2E, 5, 7> {
+    struct rov_control : public base_packet_t<0x2E, 7, 9> {
 
         int8_t axis_x = 0;
         int8_t axis_y = 0;
         int8_t axis_z = 0;
         int8_t axis_w = 0;
+        int8_t manipulator_rotate = 0;
+        int8_t manipulator_open_close = 0;
+
     private:
         void data_serialize(binary_stream &bs) override final;
 
@@ -34,10 +38,12 @@ namespace rov_types {
     };
 
 
-    struct rov_hardware_control : public base_packet_t<0x1A, 9, 11> {
+    struct rov_hardware_control : public base_packet_t<0x1A, 11, 13> {
 
         int8_t horizontal_power[4];
         int8_t vertical_power[4];
+	int8_t manipulator_rotate = 0;
+        int8_t manipulator_open_close = 0;
     private:
         void data_serialize(binary_stream &bs)  final;
 
