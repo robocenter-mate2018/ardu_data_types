@@ -21,8 +21,6 @@ namespace rov_types {
         unsigned short x = 1; /* 0x0001 */
         m_system_type = (*((unsigned char *) &x) == 0) ? byte_ordering::big_endian : byte_ordering::little_endian;
         m_ordering = byte_ordering::big_endian;
-		// Serial.print("bs constructor");
-		// Serial.println(size);
 		for (int i = 0; i < size; i++) {
 			m_data[i] = byte_array[i];
 		}
@@ -46,7 +44,7 @@ namespace rov_types {
     void binary_stream::change_byte_ordering(binary_stream::byte_ordering ordering) {
         if (m_ordering != ordering) {
             for (int i = 0; i < m_len; i++) {
-//                m_data[i] = swap_endian<int16_t>(m_data[i]);
+                m_data[i] = swap_endian<int16_t>(m_data[i]);
             }
             m_ordering = ordering;
         }

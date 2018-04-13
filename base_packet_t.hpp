@@ -17,7 +17,7 @@ namespace rov_types {
             typedef meta_traits<packet_id_, payload_size_, packet_size_> meta;
 	uint8_t serialize(uint8_t *output) override final  {
             binary_stream bs;
-            Serial.println((int)meta().packet_id);   
+            
             bs << meta().packet_id;
         
             data_serialize(bs);

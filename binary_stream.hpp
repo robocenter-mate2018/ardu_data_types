@@ -93,8 +93,7 @@ namespace rov_types {
 
         template<typename T>
         inline void read(T &data) {
-            // Serial.println("read");
-            // Serial.println(int(m_data[m_counter]));
+          
             memcpy((void *) (&data), (void *) (m_data + m_counter), sizeof(T));
 
             if (m_ordering != m_system_type) {
@@ -102,37 +101,19 @@ namespace rov_types {
             }
            
             m_counter += sizeof(T);
-            // Serial.println("read end");
+          
         }
 
         template<typename T>
         inline void write(const T data) {
-            // Serial.println("write");
-
             T loc = data;
-            Serial.print((int)loc);
-            Serial.print(" ");
-            Serial.println(sizeof(loc));
+         
             if (m_ordering != m_system_type) {
-                loc = swap_endian<T>(loc);
-
-                Serial.print((int)loc);
-                Serial.print(" swapped ");
-                Serial.println(sizeof(loc));
+				loc = swap_endian<T>(loc);
             }
-            Serial.print(m_len);
-            Serial.print(" before copyed ");
-            Serial.println(sizeof(m_data[0]));
 
             memcpy((void *) (m_data + m_len), (void *) (&loc), sizeof(T));
 			m_len += sizeof(T);
-            Serial.print((int)m_data[0]);
-            Serial.print(" copyed ");
-            Serial.println(sizeof(m_data[0]));
-
-			// Serial.print("write: ");
-			// Serial.println(sizeof(T));
-            // Serial.println("write end");
         }
     };
 
