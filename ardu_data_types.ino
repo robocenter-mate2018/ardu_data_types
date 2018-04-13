@@ -133,9 +133,9 @@ void teli_test() {
 
 void gen(rov_mini_control &rc1) {
 	rc1.acoustics = rand();
-	for (int i = 0; i < 9; i++) {
-		rc1.pins[i] = rand();
-		rc1.value[i] = rand();
+	for (int i = 0; i < 4; i++) {
+		rc1.twisting_motors[i] = rand();
+		
 	}
 
 	rc1.acoustics = rand();
@@ -151,12 +151,9 @@ String validate(rov_mini_control &rc1, rov_mini_control &rc2) {
 	if (rc1.manipulator != rc2.manipulator)
 		return "manipulator is invalid";
 
-	for (int i = 0; i < 9; i++) {
-		if (rc1.pins[i] != rc2.pins[i])
+	for (int i = 0; i < 4; i++) {
+		if (rc1.twisting_motors[i] != rc2.twisting_motors[i])
 			return "pins[i] is valid";
-
-		if (rc1.value[i] != rc2.value[i])
-			return "value[i] is valid";
 	}
 	
 	return "passed";
@@ -176,9 +173,8 @@ void rov_mini_control_test() {
 
 void gen(rov_mini_telimetry &rc1) {
 	rc1.acoustics = rand();
-	for (int i = 0; i < 9; i++) {
-		rc1.pins[i] = rand();
-		rc1.value[i] = rand();
+	for (int i = 0; i < 4; i++) {
+		rc1.twisting_motors_feedback[i] = rand();
 	}
 
 	rc1.acoustics = rand();
@@ -194,12 +190,9 @@ String validate(rov_mini_telimetry &rc1, rov_mini_telimetry &rc2) {
 	if (rc1.manipulator_feedback != rc2.manipulator_feedback)
 		return "manipulator is invalid";
 
-	for (int i = 0; i < 9; i++) {
-		if (rc1.pins[i] != rc2.pins[i])
+	for (int i = 0; i < 4; i++) {
+		if (rc1.twisting_motors_feedback[i] != rc2.twisting_motors_feedback[i])
 			return "pins[i] is valid";
-
-		if (rc1.value[i] != rc2.value[i])
-			return "value[i] is valid";
 	}
 
 	return "passed";

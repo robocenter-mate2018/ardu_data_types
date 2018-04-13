@@ -157,47 +157,39 @@ void rov_types::rov_hardware_telimetry::data_deserialize(rov_types::binary_strea
 }
 
 void rov_types::rov_mini_telimetry::data_serialize(rov_types::binary_stream &bs) {
-    for(auto & b : pins) {
+    for(auto & b : twisting_motors_feedback) {
         bs << b;
     }
-    for(auto & b : value) {
-        bs << b;
-    }
+    
     bs << acoustics;
     bs << mini_communicator_feedback;
 	bs << manipulator_feedback;
 }
 
 void rov_types::rov_mini_telimetry::data_deserialize(rov_types::binary_stream &bs) {
-    for(auto & b : pins) {
+    for(auto & b : twisting_motors_feedback) {
         bs >> b;
     }
-    for(auto & b : value) {
-        bs >> b;
-    }
+    
     bs >> acoustics;
     bs >> mini_communicator_feedback;
 	bs >> manipulator_feedback;
 }
 
 void rov_types::rov_mini_control::data_serialize(rov_types::binary_stream &bs) {
-    for(auto & b : pins) {
+    for(auto & b : twisting_motors) {
         bs << b;
     }
-    for(auto & b : value) {
-        bs << b;
-    }
+   
     bs << acoustics;
 	bs << manipulator;
 }
 
 void rov_types::rov_mini_control::data_deserialize(rov_types::binary_stream &bs) {
-    for(auto & b : pins) {
+    for(auto & b : twisting_motors) {
         bs >> b;
     }
-    for(auto & b : value) {
-        bs >> b;
-    }
+   
     bs >> acoustics;
 	bs >> manipulator;
 }

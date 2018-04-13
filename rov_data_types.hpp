@@ -86,9 +86,8 @@ namespace rov_types {
 		void data_deserialize(binary_stream &bs) override final;
 	};
 
-	struct rov_mini_telimetry : public base_packet_t<0x1B, 22, 24> {
-		uint8_t pins[9] = { 0 };
-		int8_t value[9] = { 0 };
+	struct rov_mini_telimetry : public base_packet_t<0x1B, 8, 10> {
+		int8_t twisting_motors_feedback[4] = { 0 };
 		int8_t acoustics = 0;
 		int8_t mini_communicator_feedback = 0;
 		int8_t manipulator_feedback = 0;
@@ -98,9 +97,8 @@ namespace rov_types {
 		void data_deserialize(binary_stream &bs) override final;
 	};
 
-	struct rov_mini_control : public base_packet_t<0x2B, 21, 23> {
-		uint8_t pins[9] = { 0 };
-		int8_t value[9] = { 0 };
+	struct rov_mini_control : public base_packet_t<0x2B, 7, 9> {
+		int8_t twisting_motors[4] = { 0 };
 		int8_t acoustics = 0;
 		int8_t manipulator = 0;
 	private:
