@@ -160,7 +160,7 @@ void rov_types::rov_mini_telimetry::data_serialize(rov_types::binary_stream &bs)
     for(auto & b : twisting_motors_feedback) {
         bs << b;
     }
-    
+	bs << magnet;
     bs << acoustics;
     bs << mini_communicator_feedback;
 	bs << manipulator_feedback;
@@ -170,7 +170,7 @@ void rov_types::rov_mini_telimetry::data_deserialize(rov_types::binary_stream &b
     for(auto & b : twisting_motors_feedback) {
         bs >> b;
     }
-    
+	bs >> magnet;
     bs >> acoustics;
     bs >> mini_communicator_feedback;
 	bs >> manipulator_feedback;
@@ -180,7 +180,7 @@ void rov_types::rov_mini_control::data_serialize(rov_types::binary_stream &bs) {
     for(auto & b : twisting_motors) {
         bs << b;
     }
-   
+	bs << magnet;
     bs << acoustics;
 	bs << manipulator;
 }
@@ -189,7 +189,7 @@ void rov_types::rov_mini_control::data_deserialize(rov_types::binary_stream &bs)
     for(auto & b : twisting_motors) {
         bs >> b;
     }
-   
+	bs >> magnet;
     bs >> acoustics;
 	bs >> manipulator;
 }
